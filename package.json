@@ -4,7 +4,7 @@
     "name": "Francisco Belda",
     "email": "francisco.belda@cieep.com"
   },
-  "version": "0.2.0",
+  "version": "0.3.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

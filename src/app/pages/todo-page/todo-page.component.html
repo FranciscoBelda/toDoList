@@ -1,0 +1,127 @@
+<div class="container py-5">
+  <header class="text-center mb-5">
+    <h1 class="display-4 fw-bold text-light-accent animate__animated animate__fadeInDown">
+      TaskFlow 🚀
+    </h1>
+    <p class="lead text-muted-light animate__animated animate__fadeInUp">
+      Organize your day, focus on what matters.
+    </p>
+  </header>
+
+  <main class="row">
+    <aside class="col-lg-3 mb-4">
+      <div class="card bg-dark-secondary shadow-lg border-0 animate__animated animate__fadeInLeft">
+        <div class="card-body">
+          <h5 class="card-title text-light mb-3 border-bottom pb-2">Filter Tasks</h5>
+          <div class="list-group">
+            <a (click)="filterByStatus('All')" [ngClass]="{'active': filter === 'All'}" class="list-group-item list-group-item-action bg-dark-item text-light-accent">All {{taskCount('All')}}</a>
+            <a (click)="filterByStatus('New')" [ngClass]="{'active': filter === 'New'}" class="list-group-item list-group-item-action bg-dark-item text-light active">New {{taskCount('New')}}</a>
+            <a (click)="filterByStatus('Done')" [ngClass]="{'active': filter === 'Done'}" class="list-group-item list-group-item-action bg-dark-item text-light-completed">Done {{taskCount('Done')}}</a>
+            <a (click)="filterByStatus('Hold')" [ngClass]="{'active': filter === 'Hold'}" class="list-group-item list-group-item-action bg-dark-item text-light-hold">Hold {{taskCount('Hold')}}</a>
+          </div>
+
+          <div class="d-flex justify-content-between mt-4 mb-3 border-bottom pb-2">
+            <h5 class="card-title text-light">History</h5>
+            <button (click)="cleanHistory()" class="btn btn-outline-danger">CLEAN</button>
+          </div>
+          <button (click)="filterByStatus('Deleted')"
+                  [ngClass]="{'active': filter === 'Deleted'}"
+                  class="btn btn-outline-danger w-100 animate__animated animate__pulse animate__infinite">
+            <i class="bi bi-trash-fill"></i> Deleted Tasks ({{deletedTaskList().length}})
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <section class="col-lg-9">
+      <div class="card bg-dark-secondary shadow-lg mb-4 border-0 animate__animated animate__fadeInRight">
+        <div class="card-body">
+          <h5 class="card-title text-light mb-3">Add New Task</h5>
+          <div class="input-group">
+            <input (input)="onTextChange()" [(ngModel)]="taskName" type="text" class="form-control form-control-dark-input" placeholder="What needs to be done today?" aria-label="New Task Description">
+            <button class="btn btn-group btn-primary-accent btn-hover-grow" type="button" (click)="onTextChange()">
+              <i class="bi bi-plus-lg"></i> Search
+            </button>
+           <button class="btn btn-group btn-success-accent btn-hover-grow" type="button" (click)="onAddTask()">
+              <i class="bi bi-plus-lg"></i> Create Task
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="task-list" class="animate__animated animate__fadeInUp">
+<!--
+        <div class="task-item bg-dark-secondary p-3 mb-3 d-flex align-items-center justify-content-between rounded shadow-sm border-start border-4 border-success-accent transition-all">
+          <div class="d-flex align-items-center">
+            <span class="badge bg-success-accent text-dark-secondary me-3">Completed</span>
+            <p class="mb-0 text-light text-decoration-line-through">
+              Finalize the Bootstrap UI design and send the structure.
+            </p>
+          </div>
+          <div class="btn-group task-actions" role="group">
+            <button type="button" class="btn btn-sm btn-outline-light-completed transition-all" title="Mark as New">New</button>
+            <button type="button" class="btn btn-sm btn-success-accent text-dark-secondary transition-all" title="Mark as Completed">Done</button>
+            <button type="button" class="btn btn-sm btn-outline-light transition-all" title="Mark as Hold">Hold</button>
+            <button type="button" class="btn btn-sm btn-outline-danger btn-hover-scale" title="Delete Task"><i class="bi bi-trash-fill"></i></button>
+          </div>
+        </div>
+-->
+
+        @if (isfilterRecordPresent()) {
+        @for (task of filteredTaskList(); track $index){
+          <div class="task-item bg-dark-secondary p-3 mb-3 d-flex align-items-center justify-content-between rounded shadow-sm border-start border-4 border-primary-accent transition-all">
+            <div class="d-flex align-items-center">
+              <span class="badge bg-primary-accent text-dark-secondary me-3">{{task.taskStatus}}</span>
+              <p class="mb-0 text-light fw-bold">
+                {{task.taskName}}
+              </p>
+            </div>
+            <div class="btn-group task-actions" role="group">
+              <button type="button"  (click)="task.taskStatus = 'New'"
+                      [ngClass]="{'btn-success-accent': task.taskStatus==='New',
+                       'btn-outline-light-new': task.taskStatus !== 'New'}"
+                      class="btn btn-sm  transition-all"
+                      title="Mark as New">New</button>
+              <button type="button" (click)="task.taskStatus = 'Done'"
+                      [ngClass]="{'btn-primary-accent': task.taskStatus==='Done',
+                       'btn-outline-light-completed': task.taskStatus !== 'Done'}"
+                      class="btn btn-sm transition-all"
+                      title="Mark as Completed">Done</button>
+              <button type="button" (click)="changeStatus(task, 'Hold')"
+                      [ngClass]="{'btn-warning': task.taskStatus==='Hold',
+                       'btn-outline-light-hold': task.taskStatus !== 'Hold'}"
+                      class="btn btn-sm transition-all"
+                      title="Mark as Hold">Hold</button>
+              <button type="button"
+                      class="btn btn-sm btn-outline-danger btn-hover-scale"
+                      title="Delete Task" (click)="deleteTask(task)"><i class="bi bi-trash-fill"></i></button>
+            </div>
+          </div>
+
+        }
+        } @else {
+          <div class="text-center p-5 mt-5 border border-dashed border-primary-accent rounded animate__animated animate__fadeInUp">
+            <h3 class="text-muted-light">No tasks found!  </h3>
+          </div>
+        }
+<!--
+        <div class="task-item bg-dark-secondary p-3 mb-3 d-flex align-items-center justify-content-between rounded shadow-sm border-start border-4 border-warning-accent transition-all">
+          <div class="d-flex align-items-center">
+            <span class="badge bg-warning-accent text-dark-secondary me-3">Hold</span>
+            <p class="mb-0 text-light fst-italic">
+              Decide on the best CSS animation library to use (JS needed).
+            </p>
+          </div>
+          <div class="btn-group task-actions" role="group">
+            <button type="button" class="btn btn-sm btn-outline-light transition-all" title="Mark as New">New</button>
+            <button type="button" class="btn btn-sm btn-outline-light-completed transition-all" title="Mark as Completed">Done</button>
+            <button type="button" class="btn btn-sm btn-warning-accent text-dark-secondary transition-all" title="Mark as Hold">Hold</button>
+            <button type="button" class="btn btn-sm btn-outline-danger btn-hover-scale" title="Delete Task"><i class="bi bi-trash-fill"></i></button>
+          </div>
+        </div>
+-->
+
+      </div>
+    </section>
+  </main>
+</div>
