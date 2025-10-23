@@ -1,1 +1,158 @@
 /* You can add global styles to this file, and also import other style files */
+/* Import Animate.css for subtle, modern entry animations */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
+
+/* Color Variables for Trending Dark Mode Scheme */
+:root {
+  --color-primary-indigo: #1C233E; /* Deep Indigo Background */
+  --color-secondary-dark: #2A3150; /* Slightly lighter card/panel background */
+  --color-electric-blue: #00BFFF; /* Bright Accent (Primary) */
+  --color-luminous-green: #39FF14; /* Completed Accent */
+  --color-soft-white: #EAEAEA; /* Light text */
+  --color-muted-light: #AAB; /* Muted text */
+  --color-hold-accent: #FFC300; /* Hold Status Yellow/Orange */
+}
+
+/* Base Body Styling */
+.bg-dark {
+  background-color: var(--color-primary-indigo) !important;
+}
+
+/* Custom Background Classes */
+.bg-dark-secondary {
+  background-color: var(--color-secondary-dark) !important;
+}
+
+.bg-dark-item:hover {
+  background-color: rgba(0, 191, 255, 0.1) !important; /* Slight blue hover for list items */
+}
+
+/* Custom Text Classes */
+.text-light {
+  color: var(--color-soft-white) !important;
+}
+.text-light-accent {
+  color: var(--color-electric-blue) !important;
+}
+.text-light-completed {
+  color: var(--color-luminous-green) !important;
+}
+.text-light-hold {
+  color: var(--color-hold-accent) !important;
+}
+.text-muted-light {
+  color: var(--color-muted-light) !important;
+}
+
+
+/* Input Styling */
+.form-control-dark-input {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--color-soft-white);
+  transition: all 0.3s ease;
+}
+
+.form-control-dark-input::placeholder {
+  color: var(--color-muted-light);
+}
+
+.form-control-dark-input:focus {
+  background-color: var(--color-secondary-dark);
+  color: var(--color-soft-white);
+  border-color: var(--color-electric-blue);
+  box-shadow: 0 0 0 0.25rem rgba(0, 191, 255, 0.25);
+}
+
+/* Custom Button Styling & Hover Animations */
+.btn-primary-accent {
+  background-color: var(--color-electric-blue);
+  border-color: var(--color-electric-blue);
+  color: var(--color-primary-indigo); /* Dark text on bright button */
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn-primary-accent:hover {
+  background-color: #0099CC;
+  border-color: #0099CC;
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+.btn-success-accent {
+  background-color: var(--color-luminous-green) !important;
+  border-color: var(--color-luminous-green) !important;
+}
+
+.btn-warning-accent {
+  background-color: var(--color-hold-accent) !important;
+  border-color: var(--color-hold-accent) !important;
+}
+
+/* Reusable Animation Classes */
+.transition-all {
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-hover-grow:hover {
+  transform: scale(1.05); /* Grow effect */
+}
+
+.btn-hover-scale:hover {
+  transform: scale(1.1); /* Scale effect for Delete button */
+}
+
+/* Task Item Styling and Animations (3. Filter & 4. Status) */
+.task-item {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  /* Custom border colors for status visualization */
+  --border-primary-accent: var(--color-electric-blue);
+  --border-success-accent: var(--color-luminous-green);
+  --border-warning-accent: var(--color-hold-accent);
+}
+
+.task-item:hover {
+  background-color: #3A4160 !important; /* Darken slightly on hover */
+  transform: translateX(5px); /* Slide-in effect on hover */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+}
+
+/* Hide task actions by default and show on hover (simulating focus/interaction) */
+.task-actions {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.task-item:hover .task-actions {
+  opacity: 1;
+}
+
+/* Style list group items for filter section */
+.list-group-item {
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-left: 3px solid transparent;
+  transition: all 0.2s;
+}
+
+.list-group-item.active {
+  background-color: var(--color-electric-blue) !important;
+  color: var(--color-primary-indigo) !important;
+  border-left-color: var(--color-luminous-green) !important;
+  font-weight: bold;
+}
+
+.list-group-item:not(.active):hover {
+  border-left-color: var(--color-electric-blue);
+}
+
+.list-group-item:hover{
+  cursor: pointer;
+}
+
+/* Custom Badge Colors */
+.badge {
+  padding: 0.5em 0.8em;
+  font-weight: 600;
+}

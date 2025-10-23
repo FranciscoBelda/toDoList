@@ -1,6 +1,10 @@
 {
   "name": "to-do-list",
-  "version": "0.0.0",
+  "author": {
+    "name": "Francisco Belda",
+    "email": "francisco.belda@cieep.com"
+  },
+  "version": "0.2.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -17,6 +21,10 @@
     "@angular/platform-browser": "^19.2.0",
     "@angular/platform-browser-dynamic": "^19.2.0",
     "@angular/router": "^19.2.0",
+    "@ng-bootstrap/ng-bootstrap": "^18.0.0",
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.13.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
@@ -25,6 +33,7 @@
     "@angular-devkit/build-angular": "^19.2.16",
     "@angular/cli": "^19.2.16",
     "@angular/compiler-cli": "^19.2.0",
+    "@angular/localize": "^19.2.0",
     "@types/jasmine": "~5.1.0",
     "jasmine-core": "~5.6.0",
     "karma": "~6.4.0",
