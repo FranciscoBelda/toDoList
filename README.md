@@ -1,59 +1,67 @@
-# ToDoList
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.16.
 
-## Development server
+# To-Do List App
 
-To start a local development server, run:
+Una aplicación sencilla, intuitiva y funcional para la gestión de tareas diarias. Este proyecto ha sido desarrollado para practicar la lógica de manipulación de arrays, estados de componentes y persistencia de datos en el cliente.
 
+## ✨ Características
+
+* **Añadir Tareas**: Crea nuevas tareas rápidamente mediante un campo de entrada.
+* **Marcar como Completado**: Cambia el estado de las tareas para llevar un control visual del progreso.
+* **Eliminar Tareas**: Borra tareas de forma individual cuando ya no sean necesarias.
+* **Persistencia Local**: Utiliza `LocalStorage` para que tus tareas no se borren al recargar la página.
+* **Contador de Pendientes**: Visualiza cuántas tareas te quedan por finalizar en tiempo real.
+
+## 🛠️ Tecnologías
+
+* **Framework**: [Angular](https://angular.io/) (v17+)
+* **Estilos**: CSS3 / SCSS con metodologías como BEM o Bootstrap para un diseño limpio.
+* **Almacenamiento**: Web Storage API (LocalStorage).
+* **Iconografía**: Font Awesome o Heroicons.
+
+## 🚀 Instalación y Ejecución
+
+1. **Clonar el repositorio**:
+```bash
+git clone https://github.com/FranciscoBelda/toDoList.git
+cd toDoList
+
+```
+
+
+2. **Instalar dependencias**:
+```bash
+npm install
+
+```
+
+
+3. **Lanzar el proyecto**:
 ```bash
 ng serve
+
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
+Abre tu navegador en `http://localhost:4200/`.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 📁 Estructura de la Aplicación
 
-```bash
-ng generate component component-name
-```
+El proyecto se divide en componentes modulares para mantener un código limpio:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+* **`TaskComponent`**: Representa la unidad individual de cada tarea.
+* **`TaskListComponent`**: Contenedor principal que gestiona el array de tareas y la lógica de filtrado.
+* **`TaskService`**: (Si aplica) Encargado de centralizar la lógica de guardado y recuperación de datos de la lista.
 
-```bash
-ng generate --help
-```
+## 📝 Ejemplo de Uso
 
-## Building
+1. Escribe el nombre de la tarea en el input superior.
+2. Presiona "Enter" o el botón "Añadir".
+3. Haz clic en el círculo/checkbox para marcarla como hecha.
+4. Usa el icono de la papelera para eliminarla definitivamente.
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+**Autor:** [Francisco Belda](https://github.com/FranciscoBelda)
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+**Licencia:** MIT
